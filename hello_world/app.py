@@ -21,7 +21,7 @@ def hello():
     # structured log
     # See: https://awslabs.github.io/aws-lambda-powertools-python/latest/core/logger/
     logger.info("Hello world API - HTTP 200")
-    return {"message": "hello world, Mr. Walter!"}
+    return {"message": "Yo, Mr. Walter!"}
 
 # Enrich logging with contextual information from Lambda
 @logger.inject_lambda_context(correlation_id_path=correlation_paths.API_GATEWAY_REST)

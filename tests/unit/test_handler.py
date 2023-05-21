@@ -5,24 +5,24 @@ import pytest
 from hello_world import app
 
 def lambda_context():
-    class LambdaContext:
-        def __init__(self):
+   class LambdaContext:
+      def __init__(self):
             self.function_name = "test-func"
             self.memory_limit_in_mb = 128
             self.invoked_function_arn = "arn:aws:lambda:eu-west-1:809313241234:function:test-func"
             self.aws_request_id = "52fdfc07-2182-154f-163f-5f0f9a621d72"
 
-        def get_remaining_time_in_millis(self) -> int:
-            return 1000
+      def get_remaining_time_in_millis(self) -> int:
+         return 1000
 
-    return LambdaContext()
+   return LambdaContext()
 
 
 @pytest.fixture()
 def apigw_event():
-    """ Generates API GW Event"""
+   """ Generates API GW Event"""
 
-    return {
+   return {
    "body":"",
    "headers":{
       "Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
@@ -137,9 +137,9 @@ def apigw_event():
 
 def test_lambda_handler(apigw_event):
 
-    ret = app.lambda_handler(apigw_event, lambda_context())
-    data = json.loads(ret["body"])
+   ret = app.lambda_handler(apigw_event, lambda_context())
+   data = json.loads(ret["body"])
 
-    assert ret["statusCode"] == 200
-    assert "message" in ret["body"]
-    assert data["message"] == "hello world"
+   assert ret["statusCode"] == 200
+   assert "message" in ret["body"]
+   assert data["message"] == "hello world"
